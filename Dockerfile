@@ -40,9 +40,9 @@ ENV ENABLE_WEB=true \
     ENABLE_HORIZON=true \
     ENABLE_REDIS=false 
 
-RUN mkdir -p /var/www/html/storage /var/www/html/bootstrap/cache && \
-    chown -R www:www /var/www/html && \
-    chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+RUN mkdir -p /www/storage /www/bootstrap/cache && \
+    chown -R www:www /www && \
+    chmod -R 775 /www/storage /www/bootstrap/cache
 
 EXPOSE 7001
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"] 
