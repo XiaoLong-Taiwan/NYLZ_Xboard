@@ -64,7 +64,7 @@ class MGate implements PaymentInterface
         $curl->post($this->config['mgate_url'] . '/v1/gateway/fetch', http_build_query($params));
         $result = $curl->response;
         if (!$result) {
-            throw new ApiException('网络异常');
+            throw new ApiException('網路異常');
         }
         if ($curl->error) {
             if (isset($result->errors)) {
@@ -74,11 +74,11 @@ class MGate implements PaymentInterface
             if (isset($result->message)) {
                 throw new ApiException($result->message);
             }
-            throw new ApiException('未知错误');
+            throw new ApiException('未知錯誤');
         }
         $curl->close();
         if (!isset($result->data->trade_no)) {
-            throw new ApiException('接口请求失败');
+            throw new ApiException('接口請求失敗');
         }
         return [
             'type' => 1, // 0:qrcode 1:url

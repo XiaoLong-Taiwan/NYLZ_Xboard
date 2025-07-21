@@ -14,23 +14,23 @@ class HiiCashPayment
     {
         return [
             'rate' => [
-                'label' => '汇率',
-                'description' => 'HiiCash支付单位为美元，如果您站点金额单位不为美元则需要填写汇率',
+                'label' => '匯率',
+                'description' => '此為[幣種]和美元互換的匯率，請填寫與近期匯率相符的值。',
                 'type' => 'input',
                 'default' => '2333'
             ],
             'pid' => [
-                'label' => '商户号',
+                'label' => 'PayPal商業帳戶ID',
                 'description' => '',
                 'type' => 'input',
             ],
             'appid' => [
-                'label'  => '应用ID',
+                'label'  => '應用程式ID',
                 'description' => '',
                 'type' => 'input'
             ],
             'key' => [
-                'label' => '私钥',
+                'label' => '密鑰',
                 'description' => '',
                 'type' => 'input',
             ]
@@ -75,14 +75,14 @@ class HiiCashPayment
         $response = curl_exec($ch);
         curl_close($ch);
         if (!$response) {
-            abort(400, '支付失败，请稍后再试');
+            abort(400, '支付失敗，請稍後再試。');
         }
         $res = json_decode($response, true);
         if (!is_array($res) || !isset($res['data'])) {
-            abort(400, '支付失败，请稍后再试');
+            abort(400, '支付失敗，請稍後再試。');
         }
         if (!is_array($res['data']) || !isset($res['data']['payData'])) {
-            abort(400, '支付失败，请稍后再试');
+            abort(400, '支付失敗，請稍後再試。');
         }
         return [
             'type' => 1, // 0:qrcode 1:url
