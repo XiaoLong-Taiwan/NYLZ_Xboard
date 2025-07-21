@@ -1,0 +1,12 @@
+{
+    "name": "订阅信息预览",
+    "code": "sub_preview",
+    "version": "1.0.0",
+    "description": "浏览器访问订阅地址时显示用户信息",
+    "author": "NobyNobi",
+    "require": {
+        "xboard": "^1.0.0"
+    },
+    "config": {
+    }
+} 

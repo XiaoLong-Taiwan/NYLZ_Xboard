@@ -1,0 +1,97 @@
+{
+    "name": "节点状态监控",
+    "code": "node_monitor",
+    "version": "1.0.0",
+    "description": "监控节点状态，当节点断开连接时通过Telegram机器人发送通知到指定群组或频道",
+    "author": "梦游",
+    "require": {
+        "xboard": ">=1.0.0"
+    },
+    "config": {
+        "bot_token": {
+            "type": "string",
+            "default": "123456789:ABCdefGHIjklMNOpqrsTUVwxyz",
+            "label": "Telegram Bot Token",
+            "description": "从 @BotFather 获取的机器人Token"
+        },
+        "chat_id": {
+            "type": "string",
+            "default": "-1001234567890,@your_channel",
+            "label": "聊天ID",
+            "description": "接收通知的群组或频道ID，支持多个用逗号分隔。群组ID以-开头，频道可以使用@用户名"
+        },
+        "check_interval": {
+            "type": "number",
+            "default": 60,
+            "label": "检查间隔（秒）",
+            "description": "节点状态检查间隔时间，建议不少于30秒"
+        },
+        "timeout": {
+            "type": "number",
+            "default": 10,
+            "label": "超时时间（秒）",
+            "description": "节点连接超时时间，建议5-30秒"
+        },
+        "retry_count": {
+            "type": "number",
+            "default": 3,
+            "label": "重试次数",
+            "description": "节点连接失败重试次数，建议2-5次"
+        },
+        "auto_discover": {
+            "type": "boolean",
+            "default": false,
+            "label": "自动发现节点",
+            "description": "启用后将自动监控系统中的所有节点，留空nodes配置时生效"
+        },
+        "nodes": {
+            "type": "string",
+            "default": "主节点:example.com:443,备用节点:backup.example.com:8080,数据库:db.example.com:3306",
+            "label": "监控节点",
+            "description": "要监控的节点列表，格式：名称1:地址1:端口1,名称2:地址2:端口2。留空且启用自动发现时将监控所有系统节点"
+        },
+        "enable_recovery_notify": {
+            "type": "boolean",
+            "default": true,
+            "label": "启用恢复通知",
+            "description": "节点从离线状态恢复到在线时是否发送通知"
+        }
+    },
+    "_comments": {
+        "setup_guide": {
+            "telegram_bot": {
+                "step1": "在Telegram中搜索 @BotFather",
+                "step2": "发送 /newbot 创建新机器人",
+                "step3": "设置机器人名称和用户名",
+                "step4": "复制获得的Bot Token到配置中"
+            },
+            "get_chat_id": {
+                "group": "将机器人添加到群组，发送消息后访问 https://api.telegram.org/bot<TOKEN>/getUpdates 获取chat.id",
+                "channel": "将机器人添加为频道管理员，可以直接使用 @频道用户名 或获取频道ID",
+                "private": "与机器人私聊发送消息后，同样通过getUpdates获取chat.id"
+            },
+            "node_config": {
+                "format": "节点名称:主机地址:端口号",
+                "examples": [
+                    "Web服务器:www.example.com:80",
+                    "HTTPS服务:secure.example.com:443",
+                    "数据库:192.168.1.100:3306",
+                    "Redis缓存:cache.example.com:6379"
+                ],
+                "notes": "支持域名和IP地址，端口号必须是数字"
+            }
+        },
+        "api_endpoints": {
+            "check_nodes": "POST /api/v1/node-monitor/check - 手动检查所有节点",
+            "get_status": "GET /api/v1/node-monitor/status - 获取节点状态",
+            "test_notify": "POST /api/v1/node-monitor/test-notification - 发送测试通知",
+            "clear_cache": "DELETE /api/v1/node-monitor/cache - 清除状态缓存"
+        },
+        "cli_commands": {
+            "check": "php artisan node-monitor:check - 检查节点状态",
+            "test": "php artisan node-monitor:check --test-notify - 发送测试通知",
+            "status": "php artisan node-monitor:check --status - 显示节点状态",
+            "clear": "php artisan node-monitor:check --clear-cache - 清除缓存"
+        }
+    }
+}

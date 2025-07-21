@@ -1,0 +1,92 @@
+{
+    "name": "每日签到",
+    "code": "daily_checkin",
+    "description": "用户每日签到系统，支持余额和流量奖励，连续签到额外奖励",
+    "version": "1.0.0",
+    "author": "Xboard Plugin Developer",
+    "require": {
+        "xboard": ">=1.0.0"
+    },
+    "configs": [
+        {
+            "label": "启用签到功能",
+            "placeholder": "请选择是否启用签到功能",
+            "field_name": "enable",
+            "field_type": "select",
+            "select_options": {
+                "1": "启用",
+                "0": "禁用"
+            },
+            "default_value": "1"
+        },
+        {
+            "label": "奖励类型",
+            "placeholder": "请选择签到奖励类型",
+            "field_name": "reward_type",
+            "field_type": "select",
+            "select_options": {
+                "balance": "余额奖励",
+                "traffic": "流量奖励",
+                "both": "余额+流量"
+            },
+            "default_value": "balance"
+        },
+        {
+            "label": "基础余额奖励(分)",
+            "placeholder": "请输入基础余额奖励，单位：分",
+            "field_name": "base_balance_reward",
+            "field_type": "input",
+            "default_value": "100"
+        },
+        {
+            "label": "基础流量奖励(MB)",
+            "placeholder": "请输入基础流量奖励，单位：MB",
+            "field_name": "base_traffic_reward",
+            "field_type": "input",
+            "default_value": "100"
+        },
+        {
+            "label": "连续签到奖励",
+            "placeholder": "请选择是否启用连续签到奖励",
+            "field_name": "continuous_bonus_enable",
+            "field_type": "select",
+            "select_options": {
+                "1": "启用",
+                "0": "禁用"
+            },
+            "default_value": "1"
+        },
+        {
+            "label": "连续奖励倍数",
+            "placeholder": "请输入连续签到奖励倍数，如1.5",
+            "field_name": "continuous_bonus_multiplier",
+            "field_type": "input",
+            "default_value": "1.5"
+        },
+        {
+            "label": "最大连续天数",
+            "placeholder": "请输入最大连续签到天数",
+            "field_name": "max_continuous_days",
+            "field_type": "input",
+            "default_value": "7"
+        },
+        {
+            "label": "重置时间(小时)",
+            "placeholder": "请输入每日重置时间，0表示凌晨0点",
+            "field_name": "reset_time",
+            "field_type": "input",
+            "default_value": "0"
+        },
+        {
+            "label": "显示签到排行榜",
+            "placeholder": "请选择是否显示排行榜",
+            "field_name": "show_ranking",
+            "field_type": "select",
+            "select_options": {
+                "1": "显示",
+                "0": "隐藏"
+            },
+            "default_value": "1"
+        }
+    ]
+}
