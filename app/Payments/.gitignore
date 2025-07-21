@@ -1,9 +1,11 @@
 *
 !.gitignore
+!BinancePay.php
 !AlipayF2F.php
 !BTCPay.php
 !Coinbase.php
 !CoinPayments.php
 !EPay.php
 !MGate.php
-
+!PayPal.php
+!EPayWxpay.php
